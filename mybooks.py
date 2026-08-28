@@ -21,7 +21,7 @@ def main():
 
     root.title("My Books Database Application")
     root.configure(background="light green")
-    root.geometry("1700x1000")
+    root.geometry("1920x1200")
     root.resizable(width=False, height=False)
 
     title_label = ttk.Label(root, text="Title", background="light green", font=("TkDefaultFont", 16))
@@ -53,6 +53,26 @@ def main():
 
     list_bx.configure(yscrollcommand=scroll_bar.set)
     scroll_bar.configure(command=list_bx.yview)
+
+    view_btn = Button(root, text="View all records", bg="black", fg="white", font="helvetica 10 bold", command="")
+    view_btn.grid(row=15, column=1)
+
+    clear_btn = Button(root, text="Clear Screen", bg="maroon", fg="white", font="helvetica 10 bold", command="")
+    clear_btn.grid(row=15, column=2)
+
+    exit_btn = Button(root, text="Exit Application", bg="blue", fg="white", font="helvetica 10 bold", command="")
+    exit_btn.grid(row=15, column=3)
+
+    modify_btn = Button(root, text="Modify Record", bg="purple", fg="white", font="helvetica 10 bold", command="")
+    modify_btn.grid(row=15, column=4)
+
+    delete_btn = Button(root, text="Delete Record", bg="red", fg="white", font="helvetica 10 bold", command="")
+    delete_btn.grid(row=15, column=5)
+
+
+
+
+
 
     root.mainloop()
 
