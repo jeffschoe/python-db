@@ -17,12 +17,12 @@ from tkinter import messagebox
 
 
 def main():
-    root = Tk()
+    root = Tk() # creates application window
 
     root.title("My Books Database Application")
     root.configure(background="light green")
-    root.geometry("1920x1200")
-    root.resizable(width=False, height=False)
+    root.geometry("1920x1200") # app window size
+    root.resizable(width=False, height=False) # prevent resizing
 
     title_label = ttk.Label(root, text="Title", background="light green", font=("TkDefaultFont", 16))
     title_label.grid(row=0, column=0, sticky=W)
@@ -30,6 +30,7 @@ def main():
     title_entry = ttk.Entry(root, width=24, textvariable=title_text)
     title_entry.grid(row=0, column=1, sticky=W)
 
+    # widgets for inserting new db entries
     author_label = ttk.Label(root, text="Author", background="light green", font=("TkDefaultFont", 16))
     author_label.grid(row=0, column=2, sticky=W)
     author_text = StringVar()
@@ -45,15 +46,17 @@ def main():
     add_btn = Button(root, text="Add Book", bg="blue", fg="white", font="helvetica 10 bold", command="")
     add_btn.grid(row=0, column=6, sticky=W)
 
+    # displays our db data
     list_bx = Listbox(root, height=16, width=40, font="helvetica 13", bg="light blue")
     list_bx.grid(row=3, column=1, columnspan=14, sticky=W + E, pady=40, padx=15)
 
     scroll_bar = Scrollbar(root)
     scroll_bar.grid(row=1, column=8, rowspan=14, sticky=W)
 
-    list_bx.configure(yscrollcommand=scroll_bar.set)
+    list_bx.configure(yscrollcommand=scroll_bar.set) # enables vertical scrolling
     scroll_bar.configure(command=list_bx.yview)
 
+    # more widgets to interface with the db
     view_btn = Button(root, text="View all records", bg="black", fg="white", font="helvetica 10 bold", command="")
     view_btn.grid(row=15, column=1)
 
