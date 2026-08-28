@@ -18,9 +18,14 @@ from tkinter import messagebox
 
 def main():
     root = Tk()
+
+    root.title("My Books Database Application")
+    root.configure(background="light green")
+    root.geometry("1700x1000")
+    root.resizable(width=False, height=False)
+
+
     root.mainloop()
-
-
 
 
 
