@@ -24,7 +24,7 @@ def main():
             self.cursor = self.con.cursor()
             self.cursor.execute("CREATE TABLE IF NOT EXISTS books(id INTEGER PRIMARY KEY, title TEXT, author TEXT, isbn INTEGER)")
             self.con.commit()
-            print("You have connected to the  database")
+            print("database connection opened...")
             print(self.con)
 
         def __del__(self):
@@ -53,6 +53,10 @@ def main():
             self.cursor.execute(delquery, [id])
             self.con.commit()
             messagebox.showinfo(title="Book Database",message="Book Deleted")
+
+        def close(self):
+            self.con.close()
+            print("database connection closed...")
 
     db = Bookdb()
 
@@ -130,13 +134,13 @@ def main():
        
 
     def on_closing():
-        dd = db
         if messagebox.askokcancel("Quit", "Do you want to quit?"):
-            root.destroy()
-            del dd
+            db.close() # closes DB connection
+            root.destroy() # closes application window/GUI
 
 
     root = Tk() # creates application window
+    root.protocol("WM_DELETE_WINDOW", on_closing) # allows us to intercept the window closing via X button
 
     root.title("My Books Database Application")
     root.configure(background="light green")
@@ -185,7 +189,7 @@ def main():
     clear_btn = Button(root, text="Clear Screen", bg="maroon", fg="white", font="helvetica 10 bold", command=clear_screen)
     clear_btn.grid(row=15, column=2)
 
-    exit_btn = Button(root, text="Exit Application", bg="blue", fg="white", font="helvetica 10 bold", command=root.destroy)
+    exit_btn = Button(root, text="Exit Application", bg="blue", fg="white", font="helvetica 10 bold", command=on_closing)
     exit_btn.grid(row=15, column=3)
 
     modify_btn = Button(root, text="Modify Record", bg="purple", fg="white", font="helvetica 10 bold", command=update_records)
